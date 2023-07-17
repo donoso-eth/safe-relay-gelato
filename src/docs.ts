@@ -37,16 +37,14 @@ const nftContract = new ethers.Contract(
   signer
 );
 
-console.log(signer.address);
 
-const gasLimit = "100000";
+const gasLimit = "8000000";
 
 
 async function relayTransaction() {
 
   // Create a transaction object
 const relayKit = new GelatoRelayPack();
-let collector = await relayKit.getFeeCollector()
 
 const gasToken = "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE"
 const ethAdapter = new EthersAdapter({
