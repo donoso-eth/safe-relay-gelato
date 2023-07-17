@@ -72,20 +72,32 @@ const options: MetaTransactionOptions = {
 };
 
 
+const standardizedSafeTx = await relayKit.createRelayedTransaction(
+  safeSDK,
+  [safeTransactionData],
+  options
+)
+
+const safeSingletonContract = await getSafeContract({
+  ethAdapter: ethAdapter,
+  safeVersion: await safeSDK.getContractVersion()
+})
+
+const signedSafeTx = await safeSDK.signTransaction(standardizedSafeTx)
 
 
 
   // Prepare the transaction
-  const safeTransaction = await safeSDK.createTransaction({
-    safeTransactionData,
+  // const safeTransaction = await safeSDK.createTransaction({
+  //   safeTransactionData,
     
-  });
-  const signedSafeTx = await safeSDK.signTransaction(safeTransaction);
+  // });
+  // const signedSafeTx = await safeSDK.signTransaction(safeTransaction);
  
-  const safeSingletonContract = await getSafeContract({
-    ethAdapter,
-    safeVersion: await safeSDK.getContractVersion(),
-  });
+  // const safeSingletonContract = await getSafeContract({
+  //   ethAdapter,
+  //   safeVersion: await safeSDK.getContractVersion(),
+ // });
   const encodedTx = safeSingletonContract.encode("execTransaction", [
     signedSafeTx.data.to,
     signedSafeTx.data.value,
