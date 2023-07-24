@@ -6,6 +6,7 @@
   "scripts": {
     "docs": "ts-node src/docs.ts",
     "account": "ts-node src/account.ts",
+    "stake": "ts-node src/stake.ts",
     "build": "tsc",
     "serve": "node dist/index.js"
   },
